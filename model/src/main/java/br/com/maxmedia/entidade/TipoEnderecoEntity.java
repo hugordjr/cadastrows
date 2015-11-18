@@ -10,10 +10,13 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import org.eclipse.persistence.annotations.ReadOnly;
+
 /**
  * The persistent class for the tipo_endereco database table.
  * 
  */
+@ReadOnly
 @Entity
 @Table(name = "tipo_endereco")
 @NamedQuery(name = "TipoEnderecoEntity.findAll", query = "SELECT t FROM TipoEnderecoEntity t")

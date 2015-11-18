@@ -11,10 +11,13 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.eclipse.persistence.annotations.ReadOnly;
+
 /**
  * The persistent class for the estados database table.
  * 
  */
+@ReadOnly
 @Entity
 @Table(name = "estados")
 @NamedQuery(name = "EstadoEntity.findAll", query = "SELECT e FROM EstadoEntity e")

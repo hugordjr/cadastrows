@@ -20,7 +20,7 @@ public abstract class AbstractDao<T> implements IDao<T> {
 
 	@PersistenceContext(name = PUNAME)
 	private EntityManager em;
-	
+
 	public AbstractDao() {
 		this.init();
 	}
@@ -29,14 +29,14 @@ public abstract class AbstractDao<T> implements IDao<T> {
 		this.init();
 		this.setEm(em);
 	}
-	
+
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private final void init() {
 		Type t = getClass().getGenericSuperclass();
 		ParameterizedType pt = (ParameterizedType) t;
 		type = (Class) pt.getActualTypeArguments()[0];
 	}
-	
+
 	@Override
 	public EntityManager getEm() {
 		return this.em;
@@ -45,13 +45,13 @@ public abstract class AbstractDao<T> implements IDao<T> {
 	@Override
 	public void setEm(EntityManager em) {
 		this.em = em;
-		
-	}
 
+	}
 
 	@Override
 	public long count() {
-		final StringBuffer queryString = new StringBuffer("SELECT count(o) from ");
+		final StringBuffer queryString = new StringBuffer(
+				"SELECT count(o) from ");
 		queryString.append(type.getSimpleName()).append(" o ");
 		final Query query = this.getEm().createQuery(queryString.toString());
 		long cc = (Long) query.getSingleResult();
@@ -68,12 +68,12 @@ public abstract class AbstractDao<T> implements IDao<T> {
 		this.getEm().persist(t);
 		return t;
 	}
-	
+
 	@Override
 	public void save() {
 		this.getEm().persist(this.getEntity());
 	}
-	
+
 	public void update() {
 		this.getEm().merge(this.getEntity());
 	}
@@ -86,11 +86,12 @@ public abstract class AbstractDao<T> implements IDao<T> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<T> findAll() {
-		final Query query = this.getEm().createNamedQuery(String.format("%s.findAll", type.getSimpleName()));
+		final Query query = this.getEm().createNamedQuery(
+				String.format("%s.findAll", type.getSimpleName()));
 		List<T> lst = query.getResultList();
 		return lst;
 	}
-	
+
 	@Override
 	public T find(final Long id) {
 		T t = (T) this.getEm().find(type, id);

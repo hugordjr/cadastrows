@@ -12,10 +12,13 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.eclipse.persistence.annotations.ReadOnly;
+
 /**
  * The persistent class for the tipo_telefone database table.
  * 
  */
+@ReadOnly
 @Entity
 @Table(name = "tipo_telefone")
 @NamedQuery(name = "TipoTelefoneEntity.findAll", query = "SELECT t FROM TipoTelefoneEntity t")

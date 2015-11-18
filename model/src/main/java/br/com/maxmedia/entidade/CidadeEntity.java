@@ -11,10 +11,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import org.eclipse.persistence.annotations.ReadOnly;
+
 /**
  * The persistent class for the cidades database table.
  * 
  */
+@ReadOnly
 @Entity
 @Table(name = "cidades")
 @NamedQuery(name = "CidadeEntity.findAll", query = "SELECT c FROM CidadeEntity c")

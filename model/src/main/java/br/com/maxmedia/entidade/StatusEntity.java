@@ -9,11 +9,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 
+import org.eclipse.persistence.annotations.ReadOnly;
+
 
 /**
  * The persistent class for the status database table.
  * 
  */
+@ReadOnly
 @Entity
 @NamedQuery(name="StatusEntity.findAll", query="SELECT s FROM StatusEntity s")
 public class StatusEntity implements Serializable {
